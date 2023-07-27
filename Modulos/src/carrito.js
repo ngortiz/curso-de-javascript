@@ -1,4 +1,4 @@
-import carrito from "./carrito";
-
-console.log("Archivo inicial");
-carrito();
+/*export default () => {
+  console.log("Carrito");
+};
+*/
