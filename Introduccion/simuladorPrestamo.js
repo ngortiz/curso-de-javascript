@@ -1,16 +1,21 @@
-const simuladorDePrestamo = (prestamo, interes) => {
-  let interes = (prestamo * tasa) / 100;
-  let cuota = (interes * plazo) / 365;
-  let total = prestamo + interes + cuota;
-  if (cuota == 12) {
-    interes = 5;
-  } else if (cuota == 24) {
-    interes = 10;
-  } else if (cuota == 36) {
-    interes = 15;
-  }
-  console.log("El interes a pagar es:" + interes);
-  console.log("Monto total es:" + total);
-};
+function calcularPrestamo(monto, tasaInteres, plazoMeses) {
+  // Convertir la tasa de interés de porcentaje a decimal
+  const tasaDecimal = tasaInteres / 100;
 
-simuladorDePrestamo(4000000, 12, 10);
+  // Calcular la cuota mensual utilizando la fórmula de la cuota de préstamo
+  const cuotaMensual =
+    (monto * tasaDecimal) / (1 - Math.pow(1 + tasaDecimal, -plazoMeses));
+
+  // Calcular el monto total a pagar (cuota mensual * número de cuotas)
+  const montoTotal = cuotaMensual * plazoMeses;
+
+  return {
+    cuotaMensual: cuotaMensual.toFixed(2), // Redondear a 2 decimales
+    montoTotal: montoTotal.toFixed(2),
+  };
+}
+
+// Ejemplo de uso
+const prestamo = calcularPrestamo(10000000, 5, 12);
+console.log("Cuota Mensual: PYG " + prestamo.cuotaMensual);
+console.log("Monto Total a Pagar: PYG " + prestamo.montoTotal);
